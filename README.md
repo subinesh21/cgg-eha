@@ -29,8 +29,22 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
+## Deploy on GitHub Pages
+
+This project is set up to deploy to **GitHub Pages** at `https://subinesh21.github.io/cgg-eha/`.
+
+1. **Enable GitHub Pages (Actions)**  
+   In the repo **Settings → Pages**, set **Source** to **GitHub Actions**.
+
+2. **Push to trigger deploy**  
+   Push to `main` (or `master`). The workflow `.github/workflows/deploy-pages.yml` will build with `NEXT_PUBLIC_BASE_PATH=/cgg-eha` and deploy the static export.
+
+3. **Local build (same as CI)**  
+   ```bash
+   NEXT_PUBLIC_BASE_PATH=/cgg-eha npm run build
+   ```
+   Output is in the `out/` folder. Images and assets use the `/cgg-eha/` prefix so they load correctly on GitHub Pages.
+
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+You can also deploy to [Vercel](https://vercel.com); for Vercel, do not set `NEXT_PUBLIC_BASE_PATH` so the app is served at the root.

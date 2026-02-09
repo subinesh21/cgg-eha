@@ -39,3 +39,44 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+
+# Dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
+
+# Next.js Build Output
+/.next/
+/out/
+
+# Production Build
+/build
+
+# Environment Variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Debug Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Vercel (if applicable)
+.vercel
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# TypeScript (If you switch to TS later)
+*.tsbuildinfo
+next-env.d.ts

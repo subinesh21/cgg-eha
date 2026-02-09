@@ -1,0 +1,208 @@
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Search, User, Heart, ShoppingCart, Menu, ChevronDown } from 'lucide-react';
+import { useCart } from '@/context/CartContext';
+import CartDrawer from '@/components/CartDrawer';
+import MobileMenu from '@/components/MobileMenu';
+
+const navItems = [
+  {
+    name: 'Shop',
+    href: '#',
+    dropdown: [
+      { name: 'Gardenware', href: '#' },
+      { name: 'Drinkware', href: '#' },
+      { name: 'Tableware', href: '#' },
+      { name: 'Storage', href: '#' },
+      { name: 'Petcare', href: '#' },
+      { name: 'Gifting', href: '#' },
+      { name: 'Bestsellers', href: '#' },
+      { name: 'New arrivals', href: '#' },
+    ],
+  },
+  {
+    name: 'About',
+    href: '#',
+    dropdown: [
+      { name: 'Our Story', href: '#' },
+      { name: 'Our Promise', href: '#' },
+      { name: 'Our Principles', href: '#' },
+      { name: 'Our Material', href: '#' },
+    ],
+  },
+  {
+    name: 'Bulk',
+    href: '#',
+    dropdown: [
+      { name: 'Eha B2B Home', href: '#' },
+      { name: 'Garden Collection', href: '#' },
+      { name: 'Home Collection', href: '#' },
+    ],
+  },
+  {
+    name: 'More',
+    href: '#',
+    dropdown: [
+      { name: 'Contact', href: '#' },
+      { name: 'Blogs', href: '#' },
+      { name: 'FAQ', href: '#' },
+    ],
+  },
+];
+
+export default function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const { cartCount, setIsCartOpen } = useCart();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <>
+      <motion.header
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.3, delay: 0.1 }}
+        className={`sticky top-0 z-50 bg-white transition-shadow duration-300 ${
+          isScrolled ? 'shadow-md' : ''
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 lg:h-20">
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(true)}
+              className="lg:hidden p-2 -ml-2 text-eco-text hover:text-primary transition-colors"
+              aria-label="Open menu"
+            >
+              <Menu className="w-6 h-6" />
+            </button>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center space-x-8">
+              {navItems.map((item) => (
+                <div
+                  key={item.name}
+                  className="relative"
+                  onMouseEnter={() => setActiveDropdown(item.name)}
+                  onMouseLeave={() => setActiveDropdown(null)}
+                >
+                  <button className="flex items-center space-x-1 text-sm font-medium text-eco-text hover:text-primary transition-colors py-2">
+                    <span>{item.name}</span>
+                    <ChevronDown className="w-4 h-4" />
+                  </button>
+
+                  <AnimatePresence>
+                    {activeDropdown === item.name && item.dropdown && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute top-full left-0 mt-1 w-48 bg-white rounded-lg shadow-lg border border-gray-100 py-2 z-50"
+                      >
+                        {item.dropdown.map((subItem) => (
+                          <a
+                            key={subItem.name}
+                            href={subItem.href}
+                            className="block px-4 py-2 text-sm text-eco-text hover:text-primary hover:bg-eco-bg transition-colors"
+                          >
+                            {subItem.name}
+                          </a>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
+            </nav>
+
+            {/* Logo */}
+            <a href="/" className="flex-shrink-0">
+              <div className="text-3xl font-heading font-bold text-primary">
+                <span className="text-eco-text">e</span>ha
+              </div>
+            </a>
+
+            {/* Right Icons */}
+            <div className="flex items-center space-x-2 sm:space-x-4">
+              {/* Search */}
+              <div className="relative">
+                <button
+                  onClick={() => setIsSearchOpen(!isSearchOpen)}
+                  className="p-2 text-eco-text hover:text-primary transition-colors"
+                  aria-label="Search"
+                >
+                  <Search className="w-5 h-5" />
+                </button>
+
+                <AnimatePresence>
+                  {isSearchOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, width: 0 }}
+                      animate={{ opacity: 1, width: 240 }}
+                      exit={{ opacity: 0, width: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute right-0 top-full mt-2"
+                    >
+                      <input
+                        type="text"
+                        placeholder="Search for products"
+                        className="w-full px-4 py-2 border border-gray-200 rounded-full text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+                        autoFocus
+                      />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Account */}
+              <a
+                href="#"
+                className="hidden sm:block p-2 text-eco-text hover:text-primary transition-colors"
+                aria-label="Account"
+              >
+                <User className="w-5 h-5" />
+              </a>
+
+              {/* Wishlist */}
+              <a
+                href="#"
+                className="hidden sm:block p-2 text-eco-text hover:text-primary transition-colors"
+                aria-label="Wishlist"
+              >
+                <Heart className="w-5 h-5" />
+              </a>
+
+              {/* Cart */}
+              <button
+                onClick={() => setIsCartOpen(true)}
+                className="relative p-2 text-eco-text hover:text-primary transition-colors"
+                aria-label="Cart"
+              >
+                <ShoppingCart className="w-5 h-5" />
+                {cartCount > 0 && (
+                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-primary text-white text-xs font-medium rounded-full flex items-center justify-center">
+                    {cartCount}
+                  </span>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      </motion.header>
+
+      <MobileMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
+      <CartDrawer />
+    </>
+  );
+}
