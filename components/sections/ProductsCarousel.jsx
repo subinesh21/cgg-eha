@@ -194,7 +194,7 @@ export default function ProductsCarousel() {
   );
 }
 
-function ProductCard({ product }) {
+export function ProductCard({ product }) {
   const [selectedColor, setSelectedColor] = useState(product.colors[0]);
   const [isHovered, setIsHovered] = useState(false);
   const { addToCart } = useCart();

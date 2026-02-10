@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${openSans.variable} ${poppins.variable}`}>
       <head>
-        <title>eha.eco - Earth Friendly Products</title>
+        <title>cgg-eha - Earth Friendly Products</title>
         <meta name="description" content="Sustainable, earth-friendly products" />
       </head>
       <body>

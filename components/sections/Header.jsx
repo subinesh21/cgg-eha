@@ -10,14 +10,13 @@ const navItems = [
     name: 'Shop',
     href: '#',
     dropdown: [
-      { name: 'Gardenware', href: '#' },
-      { name: 'Drinkware', href: '#' },
-      { name: 'Tableware', href: '#' },
-      { name: 'Storage', href: '#' },
-      { name: 'Petcare', href: '#' },
-      { name: 'Gifting', href: '#' },
-      { name: 'Bestsellers', href: '#' },
-      { name: 'New arrivals', href: '#' },
+      { name: 'Gardenware', href: '/products/gardenware' },
+      { name: 'Drinkware', href: '/products/drinkware' },
+      { name: 'Tableware', href: '/products/tableware' },
+      { name: 'Storage', href: '/products/storage' },
+      { name: 'Gifting', href: '/products/gifting' },
+      { name: 'Bestsellers', href: '/products/best-sellers' },
+      { name: 'New arrivals', href: '/products/new-arrivals' },
     ],
   },
   {
@@ -96,7 +95,7 @@ export default function Header() {
                   onMouseEnter={() => setActiveDropdown(item.name)}
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
-                  <button className="flex items-center space-x-1 text-sm font-medium text-eco-text hover:text-primary transition-colors py-2">
+                  <button className="flex items-center space-x-1 text-sm font-medium text-eco-text hover:text-blue-500 transition-colors py-2">
                     <span>{item.name}</span>
                     <ChevronDown className="w-4 h-4" />
                   </button>
@@ -139,7 +138,7 @@ export default function Header() {
               <div className="relative">
                 <button
                   onClick={() => setIsSearchOpen(!isSearchOpen)}
-                  className="p-2 text-eco-text hover:text-primary transition-colors"
+                  className="p-2 text-eco-text hover:text-blue-500 transition-colors"
                   aria-label="Search"
                 >
                   <Search className="w-5 h-5" />
@@ -166,27 +165,27 @@ export default function Header() {
               </div>
 
               {/* Account */}
-              <a
+              <button
                 href="#"
-                className="hidden sm:block p-2 text-eco-text hover:text-primary transition-colors"
+                className="p-2 text-eco-text hover:text-blue-500 transition-colors"
                 aria-label="Account"
               >
                 <User className="w-5 h-5" />
-              </a>
+              </button>
 
               {/* Wishlist */}
-              <a
+              <button
                 href="#"
-                className="hidden sm:block p-2 text-eco-text hover:text-primary transition-colors"
+                className="p-2 text-eco-text hover:text-blue-500 transition-colors"
                 aria-label="Wishlist"
               >
                 <Heart className="w-5 h-5" />
-              </a>
+              </button>
 
               {/* Cart */}
               <button
                 onClick={() => setIsCartOpen(true)}
-                className="relative p-2 text-eco-text hover:text-primary transition-colors"
+                className="relative p-2 text-eco-text hover:text-blue-500 transition-colors"
                 aria-label="Cart"
               >
                 <ShoppingCart className="w-5 h-5" />

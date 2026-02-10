@@ -7,16 +7,11 @@ import { imgPath } from '@/lib/paths';
 const slides = [
   {
     id: 1,
-    image: '/images/hero-slide-1.jpg',
-    alt: 'Valentine\'s Day Special',
-  },
-  {
-    id: 2,
     image: '/images/hero-slide-2.jpg',
     alt: 'Sustainable Collection',
   },
   {
-    id: 3,
+    id: 2,
     image: '/images/hero-slide-3.jpg',
     alt: 'Eco-friendly Kitchenware',
   },
