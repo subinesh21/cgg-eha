@@ -129,7 +129,7 @@ export default function Header() {
             {/* Logo */}
             <a href="/" className="flex-shrink-0">
               <div className="text-3xl font-heading font-bold text-primary">
-                <span className="text-eco-text">e</span>ha
+                <span className="text-eco-text">C</span>GG
               </div>
             </a>
 

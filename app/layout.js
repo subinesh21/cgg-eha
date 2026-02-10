@@ -1,22 +1,35 @@
-import type { Metadata } from 'next';
+'use client';
+
+import { Open_Sans, Poppins } from 'next/font/google';
 import { CartProvider } from '@/context/CartContext';
 import MUIProvider from '@/components/MUIProvider';
 import { ToastContainer } from 'react-toastify';
 import './globals.css';
 import 'react-toastify/dist/ReactToastify.css';
 
-export const metadata: Metadata = {
-  title: 'eha.eco - Earth Friendly Products',
-  description: 'Sustainable, earth-friendly products',
-};
+// Configure Open Sans
+const openSans = Open_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-open-sans',
+  weight: ['400', '500', '600'],
+});
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+// Configure Poppins
+const poppins = Poppins({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-poppins',
+  weight: ['400', '500', '600', '700'],
+});
+
+export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${openSans.variable} ${poppins.variable}`}>
+      <head>
+        <title>eha.eco - Earth Friendly Products</title>
+        <meta name="description" content="Sustainable, earth-friendly products" />
+      </head>
       <body>
         <MUIProvider>
           <CartProvider>

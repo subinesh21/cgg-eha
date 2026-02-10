@@ -20,12 +20,33 @@ import ScrollToTop from '@/components/ScrollToTop';
 
 export default function HomePage() {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    setIsClient(true);
     const handleScroll = () => setShowScrollTop(window.scrollY > 400);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Prevent hydration mismatch by ensuring consistent rendering
+  if (!isClient) {
+    return (
+      <div className="min-h-screen bg-white font-body">
+        {/* Empty shell for server-side rendering */}
+        <div className="invisible">
+          <TopBar />
+          <Header />
+        </div>
+        <div className="flex items-center justify-center h-screen">
+          <div className="animate-pulse">
+            <div className="w-12 h-12 bg-green-500 rounded-full mx-auto"></div>
+            <div className="mt-4 text-center text-gray-600">Loading CGG...</div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-white font-body">

@@ -245,19 +245,19 @@ function ProductCard({ product }) {
           <button
             onClick={handleAddToCart}
             disabled={product.badge === 'sold-out'}
-            className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-eco-text hover:text-primary hover:shadow-md transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-10 h-10 bg-white rounded-circle flex items-center justify-center text-eco-text hover:text-primary hover:shadow-md transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             aria-label="Add to cart"
           >
             <ShoppingCart className="w-5 h-5" />
           </button>
           <button
-            className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-eco-text hover:text-primary hover:shadow-md transition-all"
+            className="w-10 h-10 bg-white rounded-circle flex items-center justify-center text-eco-text hover:text-primary hover:shadow-md transition-all"
             aria-label="Quick view"
           >
             <Eye className="w-5 h-5" />
           </button>
           <button
-            className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-eco-text hover:text-primary hover:shadow-md transition-all"
+            className="w-10 h-10 bg-white rounded-circle flex items-center justify-center text-eco-text hover:text-primary hover:shadow-md transition-all"
             aria-label="Add to wishlist"
           >
             <Heart className="w-5 h-5" />
@@ -273,11 +273,7 @@ function ProductCard({ product }) {
             <button
               key={color}
               onClick={() => setSelectedColor(color)}
-              className={`w-4 h-4 rounded-full border ${
-                selectedColor === color
-                  ? 'border-primary ring-1 ring-primary'
-                  : 'border-gray-300'
-              }`}
+              className={`w-4 h-4 rounded-circle border $`}
               style={{ backgroundColor: getColorCode(color) }}
               aria-label={`Select ${color}`}
             />
