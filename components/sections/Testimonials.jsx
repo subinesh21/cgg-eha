@@ -116,14 +116,14 @@ export default function Testimonials() {
           <div className="flex justify-center gap-4 mt-8">
             <button
               onClick={prevTestimonial}
-              className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-eco-text hover:border-primary hover:text-primary transition-colors"
+              className="w-10 h-10 rounded-circle border border-gray-200 flex items-center justify-center text-eco-text hover:border-primary hover:text-primary transition-colors"
               aria-label="Previous testimonial"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={nextTestimonial}
-              className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-eco-text hover:border-primary hover:text-primary transition-colors"
+              className="w-10 h-10 rounded-circle border border-gray-200 flex items-center justify-center text-eco-text hover:border-primary hover:text-primary transition-colors"
               aria-label="Next testimonial"
             >
               <ChevronRight className="w-5 h-5" />
@@ -131,12 +131,12 @@ export default function Testimonials() {
           </div>
 
           {/* Dots */}
-          <div className="flex justify-center gap-2 mt-4">
+          <div className="flex justify-center gap-2 mt-4 gap-[10px]">
             {testimonials.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`w-2 h-2 rounded-full transition-all ${
+                className={`w-6 h-6 rounded-circle transition-all ${
                   index === currentIndex ? 'bg-primary w-6' : 'bg-gray-300'
                 }`}
                 aria-label={`Go to testimonial ${index + 1}`}

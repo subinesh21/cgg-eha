@@ -71,4 +71,8 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+  .bg-eco-footer{
+    background-color:whitesmoke;
+  
+  }
 }

@@ -64,34 +64,32 @@ export default function HeroSlider() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Navigation Arrows */}
+      {/* Navigation Arrows - Always visible */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center text-eco-text hover:text-primary transition-all shadow-md opacity-0 hover:opacity-100 group-hover:opacity-100"
-        style={{ opacity: 0.8 }}
+        className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-circle flex items-center justify-center text-eco-text hover:text-primary transition-all shadow-md"
         aria-label="Previous slide"
       >
         <ChevronLeft className="w-6 h-6" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center text-eco-text hover:text-primary transition-all shadow-md opacity-0 hover:opacity-100"
-        style={{ opacity: 0.8 }}
+        className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-circle flex items-center justify-center text-eco-text hover:text-primary transition-all shadow-md"
         aria-label="Next slide"
       >
         <ChevronRight className="w-6 h-6" />
       </button>
 
       {/* Dots Indicator */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-90 gap-[10px]">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`w-2.5 h-2.5 rounded-full transition-all ${
+            className={`w-3 h-3 rounded-circle transition-all ${
               index === currentSlide
-                ? 'bg-primary w-8'
-                : 'bg-white/70 hover:bg-white'
+                ? 'bg-primary w-3 h-3'
+                : 'bg-white/70 hover:bg-white w-3 h-3'
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />

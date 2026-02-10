@@ -61,20 +61,20 @@ export default function Footer() {
           {/* Logo & Contact */}
           <div className="col-span-2 md:col-span-3 lg:col-span-1">
             <div className="text-3xl font-heading font-bold text-primary mb-6">
-              <span className="text-eco-text">e</span>ha
+              <span className="text-eco-text">C</span>GG
             </div>
             <div className="space-y-3">
-              <a href="tel:+918123456789" className="flex items-center gap-2 text-sm text-eco-muted hover:text-primary transition-colors">
+              <a href="tel:+91 99401 24182" className="flex items-center gap-2 text-sm text-eco-muted hover:text-primary transition-colors">
                 <Phone className="w-4 h-4" />
-                <span>+91 81234 56789</span>
+                <span>+91 99401 24182</span>
               </a>
-              <a href="https://wa.me/918123456789" className="flex items-center gap-2 text-sm text-eco-muted hover:text-primary transition-colors">
+              <a href="https://wa.me/99401 24182" className="flex items-center gap-2 text-sm text-eco-muted hover:text-primary transition-colors">
                 <MessageCircle className="w-4 h-4" />
                 <span>WhatsApp</span>
               </a>
-              <a href="mailto:hello@eha.eco" className="flex items-center gap-2 text-sm text-eco-muted hover:text-primary transition-colors">
+              <a href="mailto:hello@cgg.eco" className="flex items-center gap-2 text-sm text-eco-muted hover:text-primary transition-colors">
                 <Mail className="w-4 h-4" />
-                <span>hello@eha.eco</span>
+                <span>hello@cgg.eco</span>
               </a>
             </div>
 
