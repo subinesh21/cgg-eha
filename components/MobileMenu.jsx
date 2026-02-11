@@ -7,42 +7,41 @@ const menuItems = [
     name: 'Shop',
     href: '#',
     children: [
-      { name: 'Gardenware', href: '#' },
-      { name: 'Drinkware', href: '#' },
-      { name: 'Tableware', href: '#' },
-      { name: 'Storage', href: '#' },
-      { name: 'Petcare', href: '#' },
-      { name: 'Gifting', href: '#' },
-      { name: 'Bestsellers', href: '#' },
-      { name: 'New arrivals', href: '#' },
+      { name: 'Gardenware', href: '/products/gardenware' },
+      { name: 'Drinkware', href: '/products/drinkware' },
+      { name: 'Tableware', href: '/products/tableware' },
+      { name: 'Storage', href: '/products/storage' },
+      { name: 'Gifting', href: '/products/gifting' },
+      { name: 'Bestsellers', href: '/products/best-sellers' },
+      { name: 'New arrivals', href: '/products/new-arrivals' },
     ],
   },
   {
     name: 'About',
     href: '#',
     children: [
-      { name: 'Our Story', href: '#' },
-      { name: 'Our Promise', href: '#' },
-      { name: 'Our Principles', href: '#' },
-      { name: 'Our Material', href: '#' },
+      { name: 'Our Story', href: '/about/our-story' },
+      { name: 'Our Promise', href: '/about/our-promise' },
+      { name: 'Our Principles', href: '/about/our-principles' },
+      { name: 'Our Material', href: '/about/our-material' },
     ],
   },
   {
     name: 'Bulk',
     href: '#',
     children: [
-      { name: 'Eha B2B Home', href: '#' },
-      { name: 'Garden Collection', href: '#' },
-      { name: 'Home Collection', href: '#' },
+      { name: 'Eha B2B Home', href: '/bulk/b2b-home' },
+      { name: 'Garden Collection', href: '/bulk/garden-collection' },
+      { name: 'Home Collection', href: '/bulk/home-collection' },
     ],
   },
   {
     name: 'More',
     href: '#',
     children: [
-      { name: 'Contact', href: '#' },
-      { name: 'Blogs', href: '#' },
-      { name: 'FAQ', href: '#' },
+      { name: 'Contact', href: '/contact' },
+      { name: 'Blogs', href: '/blogs' },
+      { name: 'FAQ', href: '/faq' },
     ],
   },
 ];
@@ -70,12 +69,12 @@ export default function MobileMenu({ isOpen, onClose }) {
             animate={{ x: 0 }}
             exit={{ x: '-100%' }}
             transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-            className="fixed top-0 left-0 h-full w-full max-w-sm bg-white z-50 lg:hidden flex flex-col"
+            className="fixed top-0 left-0 h-full w-70 max-w-sm bg-white z-50 lg:hidden flex flex-col"
           >
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
               <div className="text-2xl font-heading font-bold text-primary">
-                <span className="text-eco-text">e</span>ha
+                <span className="text-eco-text">C</span>GG
               </div>
               <button
                 onClick={onClose}

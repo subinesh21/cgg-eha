@@ -2,22 +2,23 @@ import { motion } from 'framer-motion';
 import { Phone, Mail, MessageCircle, Facebook, Instagram, Twitter, Linkedin, Youtube } from 'lucide-react';
 
 const quickLinks = [
-  { name: 'Shop All', href: '#' },
+  { name: 'Shop All', href: '/' },
   { name: 'Reseller Program', href: '#' },
-  { name: 'Contact Us', href: '#' },
+  { name: 'Contact Us', href: '/app/contact' },
   { name: 'My Account', href: '#' },
-  { name: 'Our Story', href: '#' },
-  { name: 'Our Material', href: '#' },
-  { name: 'FAQ', href: '#' },
+  { name: 'Our Story', href: '/about/our-story' },
+  { name: 'Our Material', href: '/about/our-material' },
+  { name: 'FAQ', href: '/app/faq' },
 ];
 
 const categories = [
-  { name: 'Gardenware', href: '#' },
-  { name: 'Drinkware', href: '#' },
-  { name: 'Tableware', href: '#' },
-  { name: 'Storage', href: '#' },
-  { name: 'Petcare', href: '#' },
-  { name: 'Gifting', href: '#' },
+      { name: 'Gardenware', href: '/products/gardenware' },
+      { name: 'Drinkware', href: '/products/drinkware' },
+      { name: 'Tableware', href: '/products/tableware' },
+      { name: 'Storage', href: '/products/storage' },
+      { name: 'Gifting', href: '/products/gifting' },
+      { name: 'Bestsellers', href: '/products/best-sellers' },
+      { name: 'New arrivals', href: '/products/new-arrivals' },
 ];
 
 const products = [
@@ -190,7 +191,7 @@ export default function Footer() {
               </a>
             </div>
             <p className="text-sm text-eco-muted text-center md:text-right">
-              © {new Date().getFullYear()} eha.eco. All rights reserved.
+              © {new Date().getFullYear()} cgg.eco All rights reserved.
             </p>
           </div>
         </div>

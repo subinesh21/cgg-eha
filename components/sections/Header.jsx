@@ -21,30 +21,30 @@ const navItems = [
   },
   {
     name: 'About',
-    href: '#',
+    href: '/about/our-story',
     dropdown: [
-      { name: 'Our Story', href: '#' },
-      { name: 'Our Promise', href: '#' },
-      { name: 'Our Principles', href: '#' },
-      { name: 'Our Material', href: '#' },
+      { name: 'Our Story', href: '/about/our-story' },
+      { name: 'Our Promise', href: '/about/our-promise' },
+      { name: 'Our Principles', href: '/about/our-principles' },
+      { name: 'Our Material', href: '/about/our-material' },
     ],
   },
   {
     name: 'Bulk',
-    href: '#',
+    href: '/bulk/b2b-home',
     dropdown: [
-      { name: 'Eha B2B Home', href: '#' },
-      { name: 'Garden Collection', href: '#' },
-      { name: 'Home Collection', href: '#' },
+      { name: 'Eha B2B Home', href: '/bulk/b2b-home' },
+      { name: 'Garden Collection', href: '/bulk/garden-collection' },
+      { name: 'Home Collection', href: '/bulk/home-collection' },
     ],
   },
   {
     name: 'More',
-    href: '#',
+    href: '/contact',
     dropdown: [
-      { name: 'Contact', href: '#' },
-      { name: 'Blogs', href: '#' },
-      { name: 'FAQ', href: '#' },
+      { name: 'Contact', href: '/contact' },
+      { name: 'Blogs', href: '/blogs' },
+      { name: 'FAQ', href: '/faq' },
     ],
   },
 ];
@@ -95,9 +95,9 @@ export default function Header() {
                   onMouseEnter={() => setActiveDropdown(item.name)}
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
-                  <button className="flex items-center space-x-1 text-sm font-medium text-eco-text hover:text-blue-500 transition-colors py-2">
+                  <button className="flex items-center text-sm font-medium text-eco-text hover:text-blue-500 transition-colors py-2">
                     <span>{item.name}</span>
-                    <ChevronDown className="w-4 h-4" />
+                    <ChevronDown className="w4 h-4" />
                   </button>
 
                   <AnimatePresence>
@@ -125,12 +125,13 @@ export default function Header() {
               ))}
             </nav>
 
-            {/* Logo */}
-            <a href="/" className="flex-shrink-0">
-              <div className="text-3xl font-heading font-bold text-primary">
-                <span className="text-eco-text">C</span>GG
-              </div>
-            </a>
+              {/* Logo */}
+              <a href="/" className="flex-shrink-0">
+                {/* pr-0 for mobile, lg:pr-48 for desktop (1024px and up) */}
+                <div className="text-3xl font-heading font-bold text-primary pr-0 lg:pr-48">
+                  <span className="text-eco-text">C</span>GG
+                </div>
+              </a>
 
             {/* Right Icons */}
             <div className="flex items-center space-x-2 sm:space-x-4">

@@ -7,12 +7,12 @@ import { imgPath } from '@/lib/paths';
 const slides = [
   {
     id: 1,
-    image: '/images/hero-slide-2.jpg',
+    image: '/images/blog-christmas.jpg',
     alt: 'Sustainable Collection',
   },
   {
     id: 2,
-    image: '/images/hero-slide-3.jpg',
+    image: '/images/hero-slide-2.jpg',
     alt: 'Eco-friendly Kitchenware',
   },
 ];
