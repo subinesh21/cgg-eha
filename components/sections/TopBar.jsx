@@ -1,6 +1,11 @@
+// components/sections/TopBar.tsx
 import { motion } from 'framer-motion';
 
 export default function TopBar() {
+  const showTopBar = false; // Change to 'true' when you want to show it
+  
+  if (!showTopBar) return null;
+  
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}

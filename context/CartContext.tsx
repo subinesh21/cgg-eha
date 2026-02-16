@@ -11,6 +11,21 @@ export interface CartItem {
   color: string | null;
 }
 
+export interface OrderData {
+  items: CartItem[];
+  totalAmount: number;
+  shippingAddress: {
+    fullName: string;
+    address: string;
+    city: string;
+    state: string;
+    zipCode: string;
+    country: string;
+    phone: string;
+  };
+  paymentMethod: 'cod' | 'online';
+}
+
 interface CartContextValue {
   cartItems: CartItem[];
   cartTotal: number;
@@ -21,6 +36,7 @@ interface CartContextValue {
   removeFromCart: (productId: string | number, color?: string | null) => void;
   updateQuantity: (productId: string | number, quantity: number, color?: string | null) => void;
   clearCart: () => void;
+  placeOrder: (orderData: OrderData, user: { id: string; name: string; email: string }) => Promise<boolean>;
 }
 
 const CartContext = createContext<CartContextValue | null>(null);
@@ -80,6 +96,39 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const cartTotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
+  const placeOrder = useCallback(async (
+    orderData: OrderData,
+    user: { id: string; name: string; email: string }
+  ): Promise<boolean> => {
+    try {
+      const response = await fetch('/api/orders/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          user,
+          items: orderData.items,
+          totalAmount: orderData.totalAmount,
+          shippingAddress: orderData.shippingAddress,
+          paymentMethod: orderData.paymentMethod,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Clear cart after successful order
+        clearCart();
+        return true;
+      } else {
+        console.error('Order failed:', data.message);
+        return false;
+      }
+    } catch (error) {
+      console.error('Error placing order:', error);
+      return false;
+    }
+  }, [clearCart]);
+
   return (
     <CartContext.Provider
       value={{
@@ -92,6 +141,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         removeFromCart,
         updateQuantity,
         clearCart,
+        placeOrder,
       }}
     >
       {children}

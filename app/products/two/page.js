@@ -5,46 +5,47 @@ import Header from '@/components/sections/Header';
 import Footer from '@/components/sections/Footer';
 import { ProductCard } from '@/components/sections/ProductsCarousel';
 
-const bestSellerProducts = [
+const giftingProducts = [
   {
-    id: 151,
-    name: 'Romano 7.5 inch Planters | Set of 2 | Best Seller',
-    price: 839,
-    originalPrice: 1525,
-    image: '/images/category-gardenware.jpg',
-    colors: ['Innocent', 'Coral', 'Fern'],
+    id: 141,
+    name: 'Couple Mug Gift Set | Mr & Mrs | 300 ml',
+    price: 899,
+    originalPrice: 1299,
+    image: '/images/category-drinkware.jpg',
+    colors: ['Azure', 'Sand Castle'],
     badge: 'sale',
   },
   {
-    id: 152,
-    name: 'Terravo Storage Containers For Kitchen | 2200 ml, 1200 ml',
-    price: 1340,
-    originalPrice: 2233,
-    image: '/images/category-storage.jpg',
+    id: 142,
+    name: 'Garden Lovers Gift Box | Planters & Tools',
+    price: 1499,
+    originalPrice: 2199,
+    image: '/images/category-gardenware.jpg',
+    hoverImage: '/images/product-pasta-bowls.jpg',
+    colors: ['Fern', 'Sand Castle'],
+    badge: 'hot',
+  },
+  {
+    id: 143,
+    name: 'Tableware Gift Hamper | Bowls & Snack Plates',
+    price: 1599,
+    originalPrice: 2499,
+    image: '/images/product-pasta-bowls.jpg',
     colors: ['Azure', 'Celeste', 'Innocent'],
-    badge: 'hot',
+    badge: null,
   },
   {
-    id: 153,
-    name: 'Classic Mug 300 ml | Unbreakable Mugs',
-    price: 250,
-    originalPrice: 399,
-    image: '/images/category-drinkware.jpg',
-    colors: ['Pink', 'Blue', 'Green', 'Cream'],
-    badge: 'hot',
-  },
-  {
-    id: 154,
-    name: 'Bathroom Accessories For Home | Pack of 3',
-    price: 674,
-    originalPrice: 1225,
+    id: 144,
+    name: 'Kitchen Essentials Storage Gift Set',
+    price: 1399,
+    originalPrice: 2199,
     image: '/images/product-storage-jars.jpg',
-    colors: ['Cream', 'White'],
+    colors: ['Innocent', 'Sand Castle', 'Tortilla'],
     badge: null,
   },
 ];
 
-export default function BestSellersPage() {
+export default function GiftingPage() {
   return (
     <div className="min-h-screen bg-white font-body">
       <TopBar />
@@ -53,15 +54,16 @@ export default function BestSellersPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
             <h1 className="text-2xl lg:text-3xl font-heading font-semibold text-eco-text mb-3">
-              Best Sellers
+              Two
             </h1>
             <p className="text-eco-muted max-w-2xl mx-auto">
-              Our most-loved products, chosen again and again by customers across India.
+              Thoughtful, earth friendly gifting ideas for housewarmings, festivals, and everyday
+              celebrations.
             </p>
           </div>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-            {bestSellerProducts.map((product) => (
+            {giftingProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>

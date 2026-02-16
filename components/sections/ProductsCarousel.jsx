@@ -4,7 +4,6 @@ import { ShoppingCart, Eye, Heart } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { imgPath } from '@/lib/paths';
 
-
 const tabs = ['Featured', 'New Arrivals', 'Best Sellers'];
 
 const products = {
@@ -15,6 +14,7 @@ const products = {
       price: 771,
       originalPrice: 1498,
       image: '/images/product-chai-cups.jpg',
+      hoverImage: '/images/product-chai-cups-hover.jpg',
       colors: ['Azure', 'Celeste', 'Charcoal', 'Coffee', 'Coral', 'Fern', 'Innocent', 'Sand Castle'],
       badge: 'hot',
     },
@@ -24,6 +24,7 @@ const products = {
       price: 695,
       originalPrice: 1158,
       image: '/images/product-storage-jars.jpg',
+      hoverImage: '/images/product-storage-jars-hover.jpg',
       colors: ['Azure', 'Celeste', 'Innocent', 'Sand Castle'],
       badge: 'hot',
     },
@@ -33,6 +34,7 @@ const products = {
       price: 751,
       originalPrice: 1332,
       image: '/images/product-planters.jpg',
+      hoverImage: '/images/product-planters-hover.jpg',
       colors: ['Coral', 'Fern', 'Sand Castle'],
       badge: null,
     },
@@ -42,6 +44,7 @@ const products = {
       price: 720,
       originalPrice: 1276,
       image: '/images/product-pasta-bowls.jpg',
+      hoverImage: '/images/product-pasta-bowls-hover.jpg',
       colors: ['Azure', 'Celeste', 'Innocent', 'Sand Castle', 'Tortilla'],
       badge: 'sale',
     },
@@ -53,6 +56,7 @@ const products = {
       price: 563,
       originalPrice: 849,
       image: '/images/category-drinkware.jpg',
+      hoverImage: '/images/category-drinkware-hover.jpg',
       colors: ['Azure', 'Sand Castle'],
       badge: 'sale',
     },
@@ -62,6 +66,7 @@ const products = {
       price: 432,
       originalPrice: 650,
       image: '/images/category-tableware.jpg',
+      hoverImage: '/images/category-tableware-hover.jpg',
       colors: ['Azure', 'Tortilla'],
       badge: null,
     },
@@ -71,6 +76,7 @@ const products = {
       price: 460,
       originalPrice: 579,
       image: '/images/hero-slide-3.jpg',
+      hoverImage: '/images/hero-slide-3-hover.jpg',
       colors: ['Azure', 'Celeste', 'Charcoal', 'Coffee', 'Coral'],
       badge: 'hot',
     },
@@ -80,6 +86,7 @@ const products = {
       price: 714,
       originalPrice: 1149,
       image: '/images/product-pasta-bowls.jpg',
+      hoverImage: '/images/product-pasta-bowls-hover.jpg',
       colors: ['Azure', 'Celeste', 'Innocent', 'Multicolor', 'Sand Castle'],
       badge: null,
     },
@@ -91,6 +98,7 @@ const products = {
       price: 839,
       originalPrice: 1525,
       image: '/images/category-gardenware.jpg',
+      hoverImage: '/images/category-gardenware-hover.jpg',
       colors: ['Innocent', 'Coral', 'Fern'],
       badge: 'sale',
     },
@@ -100,6 +108,7 @@ const products = {
       price: 1340,
       originalPrice: 2233,
       image: '/images/category-storage.jpg',
+      hoverImage: '/images/category-storage-hover.jpg',
       colors: ['Azure', 'Celeste', 'Innocent'],
       badge: 'hot',
     },
@@ -109,6 +118,7 @@ const products = {
       price: 250,
       originalPrice: 399,
       image: '/images/category-drinkware.jpg',
+      hoverImage: '/images/category-drinkware-hover.jpg',
       colors: ['Pink', 'Blue', 'Green', 'Cream'],
       badge: 'sold-out',
     },
@@ -118,6 +128,7 @@ const products = {
       price: 674,
       originalPrice: 1225,
       image: '/images/product-storage-jars.jpg',
+      hoverImage: '/images/product-storage-jars-hover.jpg',
       colors: ['Cream', 'White'],
       badge: null,
     },
@@ -213,18 +224,32 @@ export function ProductCard({ product }) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Image */}
+      {/* Image with hover effect */}
       <div className="relative aspect-square bg-gray-100 rounded-lg overflow-hidden mb-4">
+        {/* Default Image */}
         <img
           src={imgPath(product.image)}
           alt={product.name}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className={`w-full h-full object-cover transition-opacity duration-500 ${
+            isHovered && product.hoverImage ? 'opacity-0' : 'opacity-100'
+          }`}
         />
+        
+        {/* Hover Image */}
+        {product.hoverImage && (
+          <img
+            src={imgPath(product.hoverImage)}
+            alt={`${product.name} - alternate view`}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+              isHovered ? 'opacity-100' : 'opacity-0'
+            }`}
+          />
+        )}
 
         {/* Badge */}
         {product.badge && (
           <div
-            className={`absolute top-3 left-3 px-3 py-1 text-xs font-medium text-white rounded-full ${
+            className={`absolute top-3 left-3 px-3 py-1 text-xs font-medium text-white rounded-full z-10 ${
               product.badge === 'hot'
                 ? 'bg-primary'
                 : product.badge === 'sale'
@@ -238,26 +263,26 @@ export function ProductCard({ product }) {
 
         {/* Quick Actions */}
         <div
-          className={`absolute bottom-3 left-3 right-3 flex justify-center gap-2 transition-all duration-300 ${
+          className={`absolute bottom-3 left-3 right-3 flex justify-center gap-2 transition-all duration-300 z-10 ${
             isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <button
             onClick={handleAddToCart}
             disabled={product.badge === 'sold-out'}
-            className="w-10 h-10 bg-white rounded-circle flex items-center justify-center text-eco-text hover:text-primary hover:shadow-md transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-eco-text hover:text-primary hover:shadow-md transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             aria-label="Add to cart"
           >
             <ShoppingCart className="w-5 h-5" />
           </button>
           <button
-            className="w-10 h-10 bg-white rounded-circle flex items-center justify-center text-eco-text hover:text-primary hover:shadow-md transition-all"
+            className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-eco-text hover:text-primary hover:shadow-md transition-all"
             aria-label="Quick view"
           >
             <Eye className="w-5 h-5" />
           </button>
           <button
-            className="w-10 h-10 bg-white rounded-circle flex items-center justify-center text-eco-text hover:text-primary hover:shadow-md transition-all"
+            className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-eco-text hover:text-primary hover:shadow-md transition-all"
             aria-label="Add to wishlist"
           >
             <Heart className="w-5 h-5" />
@@ -273,7 +298,9 @@ export function ProductCard({ product }) {
             <button
               key={color}
               onClick={() => setSelectedColor(color)}
-              className={`w-4 h-4 rounded-circle border $`}
+              className={`w-4 h-4 rounded-full border-2 transition-all ${
+                selectedColor === color ? 'border-primary scale-110' : 'border-transparent'
+              }`}
               style={{ backgroundColor: getColorCode(color) }}
               aria-label={`Select ${color}`}
             />

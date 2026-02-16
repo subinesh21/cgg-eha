@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronRight, ChevronDown } from 'lucide-react';
+import { X, ChevronRight, ChevronDown, User, LogOut } from 'lucide-react';
+import { useAuth } from '@/context/AuthContext';
 
 const menuItems = [
   {
@@ -48,6 +49,7 @@ const menuItems = [
 
 export default function MobileMenu({ isOpen, onClose }) {
   const [expandedItem, setExpandedItem] = useState(null);
+  const { user, isAuthenticated, logout, isLoading } = useAuth();
 
   return (
     <AnimatePresence>
@@ -129,14 +131,32 @@ export default function MobileMenu({ isOpen, onClose }) {
 
             {/* Footer */}
             <div className="border-t border-gray-100 p-6 space-y-3">
+              {isAuthenticated ? (
+                <>
+                  <div className="py-2 text-eco-text">
+                    <p className="font-medium">Hi, {user?.name}</p>
+                    <p className="text-sm text-gray-500">{user?.email}</p>
+                  </div>
+                  <button
+                    onClick={logout}
+                    disabled={isLoading}
+                    className="w-full py-3 text-left border border-primary text-primary font-medium rounded-md hover:bg-primary hover:text-white transition-colors disabled:opacity-50 flex items-center gap-2"
+                  >
+                    <LogOut className="w-4 h-4" />
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <a
+                  href="/account"
+                  className="block w-full py-3 text-center border border-primary text-primary font-medium rounded-md hover:bg-primary hover:text-white transition-colors"
+                >
+                  <User className="w-4 h-4 inline mr-2" />
+                  Login / Register
+                </a>
+              )}
               <a
-                href="#"
-                className="block w-full py-3 text-center border border-primary text-primary font-medium rounded-md hover:bg-primary hover:text-white transition-colors"
-              >
-                Login / Register
-              </a>
-              <a
-                href="#"
+                href="/products"
                 className="block w-full py-3 text-center bg-primary text-white font-medium rounded-md hover:bg-primary-dark transition-colors"
               >
                 Shop Now

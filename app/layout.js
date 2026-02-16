@@ -2,6 +2,7 @@
 
 import { Open_Sans, Poppins } from 'next/font/google';
 import { CartProvider } from '@/context/CartContext';
+import { AuthProvider } from '@/context/AuthContext';
 import MUIProvider from '@/components/MUIProvider';
 import { ToastContainer } from 'react-toastify';
 import './globals.css';
@@ -32,21 +33,23 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <MUIProvider>
-          <CartProvider>
-            {children}
-            <ToastContainer
-              position="top-right"
-              autoClose={3000}
-              hideProgressBar={false}
-              newestOnTop
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              theme="light"
-            />
-          </CartProvider>
+          <AuthProvider>
+            <CartProvider>
+              {children}
+              <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+              />
+            </CartProvider>
+          </AuthProvider>
         </MUIProvider>
       </body>
     </html>

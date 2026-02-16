@@ -21,6 +21,7 @@ import ScrollToTop from '@/components/ScrollToTop';
 export default function HomePage() {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [isClient, setIsClient] = useState(false);
+  const showTopBar = false; // Change to 'true' when you want to show it again
 
   useEffect(() => {
     setIsClient(true);
@@ -35,7 +36,6 @@ export default function HomePage() {
       <div className="min-h-screen bg-white font-body">
         {/* Empty shell for server-side rendering */}
         <div className="invisible">
-          <TopBar />
           <Header />
         </div>
         <div className="flex items-center justify-center h-screen">

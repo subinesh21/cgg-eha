@@ -2,10 +2,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Plus, Minus, ShoppingBag } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { imgPath } from '@/lib/paths';
+import { useRouter } from 'next/navigation';
 
 
 export default function CartDrawer() {
   const { cartItems, cartTotal, cartCount, isCartOpen, setIsCartOpen, updateQuantity, removeFromCart } = useCart();
+  const router = useRouter();
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat('en-IN', {
@@ -35,7 +37,7 @@ export default function CartDrawer() {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-            className="fixed top-0 right-0 h-full w-70 max-w-md bg-white z-50 shadow-xl flex flex-col"
+            className="fixed top-0 right-0 h-full lg:w-100 w-70 max-w-md bg-white z-50 shadow-xl flex flex-col"
           >
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
@@ -138,7 +140,13 @@ export default function CartDrawer() {
                     {formatPrice(cartTotal)}
                   </span>
                 </div>
-                <button className="w-full py-3 bg-primary text-white font-medium rounded-md hover:bg-primary-dark transition-colors">
+                <button 
+                  onClick={() => {
+                    setIsCartOpen(false);
+                    router.push('/checkout');
+                  }}
+                  className="w-full py-3 bg-primary text-white font-medium rounded-md hover:bg-primary-dark transition-colors"
+                >
                   PROCEED TO CHECKOUT
                 </button>
                 <button
